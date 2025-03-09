@@ -1,0 +1,245 @@
+/* OrderHistory.css */
+
+.order-history-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.order-history-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.order-history-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    margin-left: 1rem;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #1f2937;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+}
+
+.error-message {
+    text-align: center;
+    color: #ef4444;
+    margin-bottom: 1rem;
+}
+
+.retry-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+    background-color: #2563eb;
+}
+
+.no-orders-message {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6b7280;
+}
+
+.no-orders-message svg {
+    margin-bottom: 1rem;
+    color: #9ca3af;
+}
+
+.no-orders-message h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+}
+
+.order-now-button {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.order-now-button:hover {
+    background-color: #2563eb;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.order-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.order-id,
+.order-date,
+.order-vendor {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.value {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.order-id .value {
+    font-family: monospace;
+    background-color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.order-vendor {
+    margin-bottom: 0.75rem;
+}
+
+.order-items-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 0.75rem;
+}
+
+.items-count {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.items-total {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-icon {
+    display: inline-flex;
+}
+
+.status-icon.pending {
+    color: #f59e0b;
+}
+
+.status-icon.confirmed {
+    color: #3b82f6;
+}
+
+.status-icon.preparing {
+    color: #8b5cf6;
+}
+
+.status-icon.delivery {
+    color: #10b981;
+}
+
+.status-icon.delivered {
+    color: #10b981;
+}
+
+.status-icon.cancelled {
+    color: #ef4444;
+}
+
+.status-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.track-order-link {
+    display: flex;
+    align-items: center;
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.track-order-link:hover {
+    color: #2563eb;
+}
+
+.track-order-link svg {
+    margin-left: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .order-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .order-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .track-order-link {
+        align-self: flex-end;
+    }
+}
