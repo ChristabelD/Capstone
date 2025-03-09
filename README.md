@@ -1,105 +1,96 @@
 # theVendor
 
 ## Overview
-**theVendor** is a comprehensive pharmaceutical delivery platform that includes a backend API and a client-side application for pharmacies and customers. The system facilitates the seamless ordering, tracking, and delivery of medications.
 
-## Project Structure
-- **pharmaceutical-delivery-api** - The backend API that handles authentication, order management, inventory tracking, and delivery coordination.
-- **pharmacy-client** - The frontend application for pharmacies and customers to place and track orders.
+theVendor is a pharmaceutical delivery platform that includes two main components:
 
----
+1. **pharmaceutical-delivery-api** – A backend API that manages pharmaceutical orders, deliveries, and user authentication.
+2. **pharmacy-client** – A frontend client for pharmacies and users to place and track orders.
 
 ## Features
-### **Pharmaceutical Delivery API**
-- User authentication & authorization
-- Order management system
-- Inventory tracking
-- Secure payment integration
-- Delivery scheduling & tracking
-- Notifications & alerts
+- Secure authentication and authorization
+- Order placement and tracking
+- Pharmacy inventory management
+- Delivery status updates
 
-### **Pharmacy Client**
-- User-friendly interface for pharmacies and customers
-- Search and order medications
-- Real-time order tracking
-- Payment processing
-- Order history and management
+## Installation & Setup
 
----
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (for frontend and backend)
+- [Python](https://www.python.org/) and [Django](https://www.djangoproject.com/) (for API)
+- [Docker](https://www.docker.com/) (optional, for containerized deployment)
+- [PostgreSQL](https://www.postgresql.org/) (or another supported database)
 
-## Tech Stack
-### **Backend (pharmaceutical-delivery-api)**
-- Django REST Framework (DRF)
-- PostgreSQL
-- Celery & Redis (Task Queue)
-- JWT Authentication
+### Backend (pharmaceutical-delivery-api)
 
-### **Frontend (pharmacy-client)**
-- React.js
-- Tailwind CSS
-- Redux Toolkit
-- Axios
-
----
-
-## Setup & Installation
-### **Backend**
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/christabelD/pharmaceutical-delivery-api.git
+   ```bash
+   git clone https://github.com/ChristabelD/pharmaceutical-delivery-api.git
    cd pharmaceutical-delivery-api
    ```
-2. Create a virtual environment and install dependencies:
-   ```sh
+2. Create a virtual environment:
+   ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
    pip install -r requirements.txt
    ```
-3. Configure environment variables and run migrations:
-   ```sh
+4. Set up environment variables (`.env` file):
+   ```
+   DATABASE_URL=your_database_url
+   SECRET_KEY=your_secret_key
+   ```
+5. Run migrations:
+   ```bash
    python manage.py migrate
    ```
-4. Start the server:
-   ```sh
+6. Start the server:
+   ```bash
    python manage.py runserver
    ```
 
-### **Frontend**
+### Frontend (pharmacy-client)
+
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/pharmacy-client.git
+   ```bash
+   git clone https://github.com/your-username/pharmacy-client.git
    cd pharmacy-client
    ```
 2. Install dependencies:
-   ```sh
+   ```bash
    npm install
    ```
-3. Start the development server:
-   ```sh
+3. Create a `.env` file and configure API endpoints:
+   ```
+   REACT_APP_API_URL=http://localhost:8000
+   ```
+4. Start the development server:
+   ```bash
    npm start
    ```
 
----
+## Running with Docker
 
-## API Documentation
-API documentation can be accessed via Swagger:
-```sh
-http://localhost:8000/api/docs/
-```
+1. Ensure Docker is installed.
+2. Navigate to the project directory.
+3. Build and run using Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
 
----
+## Related Files
+- `pharmaceutical-delivery-api/` – Backend source code
+- `pharmacy-client/` – Frontend source code
+- `docker-compose.yml` – Configuration for containerized deployment
+- `.env.example` – Example environment variable file
+- `requirements.txt` – Backend dependencies
+- `package.json` – Frontend dependencies
 
-## Contribution
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m "Added feature-name"`
-4. Push to branch: `git push origin feature-name`
-5. Create a pull request
-
----
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
+This project is licensed under the MIT License.
