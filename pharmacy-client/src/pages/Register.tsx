@@ -4,92 +4,201 @@ import { useNavigate } from "react-router-dom";
 const Register: React.FC = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [form, setForm] = useState({
+    businessName: "",
+    license: "",
+    fullName: "",
+    phone: "",
+    email: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const [error, setError] = useState("");
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
+    // Simple validation
+    if (form.password !== form.confirmPassword) {
+      return setError("Passwords do not match");
     }
 
-    // Simulated registration logic (replace with real API call)
-    if (email && password && name) {
-      // Store dummy auth flag
+    if (form.password.length < 8) {
+      return setError("Password must be at least 8 characters");
+    }
+
+    // Simulated API request
+    try {
+      // Replace this block with actual API call
+      if (form.email === "Christabelladams0@gmail.com") {
+        throw new Error("Email already exists");
+      }
+
+      // Save auth flag
       localStorage.setItem("auth", "true");
 
-      // Redirect to dashboard or login
+      // Redirect to login or dashboard
       navigate("/");
-    } else {
-      setError("Please fill out all fields");
+    } catch (err: any) {
+      setError(err.message || "Registration failed");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-2xl"
+      >
+        <h2 className="text-2xl font-bold mb-4">Pharmacy Registration</h2>
 
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {error && <p className="text-red-600 mb-4">{error}</p>}
 
-        <form onSubmit={handleRegister} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+        {/* Business Info */}
+        <div className="mb-4">
+          <label className="block">Business Name</label>
+          <input
+            name="businessName"
+            value={form.businessName}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block">Pharmacy License</label>
+          <input
+            name="license"
+            value={form.license}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+
+        {/* Contact Info */}
+        <div className="mb-4">
+          <label className="block">Full Name</label>
+          <input
+            name="fullName"
+            value={form.fullName}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block">Phone Number</label>
+          <input
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block">Email</label>
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block">Street Address</label>
+          <input
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
+        <div className="flex space-x-2 mb-4">
+          <div className="w-1/2">
+            <label className="block">City</label>
             <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+              name="city"
+              value={form.city}
+              onChange={handleChange}
+              className="w-full border rounded px-3 py-2"
               required
             />
           </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+          <div className="w-1/2">
+            <label className="block">State</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+              name="state"
+              value={form.state}
+              onChange={handleChange}
+              className="w-full border rounded px-3 py-2"
               required
             />
           </div>
+        </div>
+        <div className="mb-4">
+          <label className="block">Zip Code</label>
+          <input
+            name="zip"
+            value={form.zip}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-              required
-            />
-          </div>
+        {/* Security */}
+        <div className="mb-4">
+          <label className="block">Password</label>
+          <input
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+            minLength={8}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block">Confirm Password</label>
+          <input
+            name="confirmPassword"
+            type="password"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-              required
-            />
-          </div>
+        <button
+          type="submit"
+          className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+        >
+          Register Pharmacy
+        </button>
 
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-          >
-            Create Account
-          </button>
-        </form>
-      </div>
+        <p className="mt-4 text-sm text-center">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-600 hover:underline">
+            Login
+          </a>
+        </p>
+      </form>
     </div>
   );
 };
