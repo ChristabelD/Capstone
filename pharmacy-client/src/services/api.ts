@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { Socket, io } from "socket.io-client";
 
 // Base URL from the API documentation
-const BASE_URL = 'https://pharmaceutical-delivery-api.onrender.com/api';
+const BASE_URL = 'https://pharmaceutical-delivery-api-3ke3.onrender.com/api'
 
 // Create an axios instance with base configuration
 const apiClient = axios.create({
